@@ -1,0 +1,34 @@
+
+{
+  "name": "wverbal",
+  "version": "0.3.0",
+  "description": "Mixin making a class verbal",
+  "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
+  "license": "MIT",
+  "main": "staging/dwtools/amid/mixn/Verbal.s",
+  "files": [
+    "staging/dwtools/amid/mixin",
+    "production"
+  ],
+  "scripts": {
+    "test": "wtest staging",
+    "make_doc": "./doc.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/wVerbal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Wandalen/wVerbal/issues"
+  },
+  "dependencies": {
+    "wTools": ""
+  },
+  "devDependencies": {
+    "wTesting": "",
+    "wverbal": "."
+  },
+  "keywords": [
+    "wTools"
+  ]
+}
