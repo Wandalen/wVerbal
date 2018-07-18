@@ -4,7 +4,7 @@
   "description": "Mixin making a class verbal",
   "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
   "license": "MIT",
-  "main": "staging/dwtools/amid/mixn/Verbal.s",
+  "main": "staging/dwtools/amid/mixin/Verbal.s",
   "files": [
     "staging/dwtools/amid/mixin",
     "production"
