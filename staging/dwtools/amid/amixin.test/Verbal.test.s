@@ -25,7 +25,7 @@ if( typeof module !== 'undefined' )
   var _ = wTools;
   _.include( 'wTesting' );
 
-  require( '../mixin/Verbal.s' );
+  require( '../amixin/Verbal.s' );
 
 }
 

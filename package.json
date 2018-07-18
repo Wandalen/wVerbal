@@ -1,12 +1,12 @@
 {
   "name": "wverbal",
-  "version": "0.3.4",
+  "version": "0.3.3",
   "description": "Mixin making a class verbal",
   "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
   "license": "MIT",
-  "main": "staging/dwtools/amid/mixin/Verbal.s",
+  "main": "staging/dwtools/amid/amixin/Verbal.s",
   "files": [
-    "staging/dwtools/amid/mixin",
+    "staging/dwtools/amid/amixin",
     "production"
   ],
   "scripts": {
