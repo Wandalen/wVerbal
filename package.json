@@ -21,7 +21,8 @@
     "url": "https://github.com/Wandalen/wVerbal/issues"
   },
   "dependencies": {
-    "wTools": ""
+    "wTools": "",
+    "wProto": ""
   },
   "devDependencies": {
     "wTesting": "",
