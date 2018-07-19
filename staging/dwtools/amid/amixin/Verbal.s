@@ -74,6 +74,37 @@ function _verbositySet( src )
 
 //
 
+function _coloringSet( src )
+{
+  var self = this;
+
+  _.assert( arguments.length === 1 );
+  _.assert( _.boolLike( src ) );
+
+  if( self.logger )
+  {
+    self[ coloringSymbol ] = src;
+    self.logger.coloring = src;
+  }
+  else
+  {
+    self[ coloringSymbol ] = src;
+  }
+
+}
+
+//
+
+function _coloringGet()
+{
+  var self = this;
+  if( self.logger )
+  return self.logger.coloring;
+  return self[ coloringSymbol ];
+}
+
+//
+
 function _verbosityForFileProvider()
 {
   var self = this;
@@ -115,7 +146,10 @@ function _loggerSet( src )
   _.assert( arguments.length === 1 );
 
   if( src )
-  src.verbosity = self._verbosityForLogger();
+  {
+    src.verbosity = self._verbosityForLogger();
+    src.coloring = self.coloring;
+  }
 
   self[ loggerSymbol ] = src;
 
@@ -126,6 +160,7 @@ function _loggerSet( src )
 // --
 
 var verbositySymbol = Symbol.for( 'verbosity' );
+var coloringSymbol = Symbol.for( 'coloring' );
 var fileProviderSymbol = Symbol.for( 'fileProvider' );
 var loggerSymbol = Symbol.for( 'logger' );
 
@@ -136,6 +171,7 @@ var loggerSymbol = Symbol.for( 'logger' );
 var Composes =
 {
   verbosity : 0,
+  coloring : 1,
 }
 
 var Aggregates =
@@ -161,6 +197,7 @@ var Forbids =
 var Accessors =
 {
   verbosity : 'verbosity',
+  coloring : 'coloring',
   fileProvider : 'fileProvider',
   logger : 'logger',
 }
@@ -173,11 +210,14 @@ var Supplement =
 {
 
   _verbositySet : _verbositySet,
+  _coloringSet : _coloringSet,
+  _coloringGet : _coloringGet,
 
   _verbosityForFileProvider : _verbosityForFileProvider,
   _fileProviderSet : _fileProviderSet,
   _verbosityForLogger : _verbosityForLogger,
   _loggerSet : _loggerSet,
+
 
   //
 
