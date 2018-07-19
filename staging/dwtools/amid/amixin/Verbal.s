@@ -2,8 +2,6 @@
 
 'use strict';
 
-debugger;
-
 if( typeof module !== 'undefined' )
 {
 
@@ -62,18 +60,26 @@ function _verbositySet( src )
   _.assert( arguments.length === 1 );
   _.assert( _.numberIs( src ) );
 
-  if( src < 0 )
-  src = 0;
-  if( src > 9 )
-  src = 9;
+  src = _.numberClamp( src, 0, 9 );
 
   self[ verbositySymbol ] = src;
 
   if( self.fileProvider )
-  self.fileProvider.verbosity = src;
-  if( self.logger )
-  self.logger.verbosity = src;
+  self.fileProvider.verbosity = self._verbosityForFileProvider();
 
+  if( self.logger )
+  self.logger.verbosity = self._verbosityForLogger();
+
+}
+
+//
+
+function _verbosityForFileProvider()
+{
+  var self = this;
+  var less = _.numberClamp( self.verbosity-2, 0, 9 );
+  _.assert( arguments.length === 0 );
+  return less;
 }
 
 //
@@ -85,10 +91,19 @@ function _fileProviderSet( src )
   _.assert( arguments.length === 1 );
 
   if( src )
-  src.verbosity = self.verbosity;
+  src.verbosity = self._verbosityForFileProvider();
 
   self[ fileProviderSymbol ] = src;
 
+}
+
+//
+
+function _verbosityForLogger()
+{
+  var self = this;
+  _.assert( arguments.length === 0 );
+  return self.verbosity;
 }
 
 //
@@ -100,7 +115,7 @@ function _loggerSet( src )
   _.assert( arguments.length === 1 );
 
   if( src )
-  src.verbosity = self.verbosity;
+  src.verbosity = self._verbosityForLogger();
 
   self[ loggerSymbol ] = src;
 
@@ -158,7 +173,10 @@ var Supplement =
 {
 
   _verbositySet : _verbositySet,
+
+  _verbosityForFileProvider : _verbosityForFileProvider,
   _fileProviderSet : _fileProviderSet,
+  _verbosityForLogger : _verbosityForLogger,
   _loggerSet : _loggerSet,
 
   //
