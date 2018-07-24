@@ -81,10 +81,13 @@ function _coloringSet( src )
   _.assert( arguments.length === 1 );
   _.assert( _.boolLike( src ) );
 
+  if( !src )
+  debugger;
+
   if( self.logger )
   {
     self[ coloringSymbol ] = src;
-    self.logger.coloring = src;
+    self.logger.outputGray = src ? 0 : 1;
   }
   else
   {
@@ -99,7 +102,7 @@ function _coloringGet()
 {
   var self = this;
   if( self.logger )
-  return self.logger.coloring;
+  return !self.logger.outputGray;
   return self[ coloringSymbol ];
 }
 
@@ -148,7 +151,7 @@ function _loggerSet( src )
   if( src )
   {
     src.verbosity = self._verbosityForLogger();
-    src.coloring = self.coloring;
+    src.outputGray = self.coloring ? 0 :1;
   }
 
   self[ loggerSymbol ] = src;
