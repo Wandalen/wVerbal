@@ -44,7 +44,7 @@ var Self = function wVerbal( o )
   return Self.prototype.init.apply( this,arguments );
 }
 
-Self.nameShort = 'Verbal';
+Self.shortName = 'Verbal';
 
 // --
 // routines
@@ -168,7 +168,7 @@ var fileProviderSymbol = Symbol.for( 'fileProvider' );
 var loggerSymbol = Symbol.for( 'logger' );
 
 // --
-// relationships
+// relations
 // --
 
 var Composes =
@@ -250,7 +250,7 @@ _.classMake
 // export
 // --
 
-_global_[ Self.name ] = _[ Self.nameShort ] = Self;
+_global_[ Self.name ] = _[ Self.shortName ] = Self;
 
 if( typeof module !== 'undefined' )
 if( _global_.WTOOLS_PRIVATE )
