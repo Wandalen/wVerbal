@@ -1,6 +1,6 @@
 {
   "name": "wverbal",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Mixin making a class verbal",
   "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
   "license": "MIT",
