@@ -199,10 +199,10 @@ var Forbids =
 
 var Accessors =
 {
-  verbosity : 'verbosity',
-  coloring : 'coloring',
-  fileProvider : 'fileProvider',
-  logger : 'logger',
+  verbosity : { combining : 'supplement' },
+  coloring : { combining : 'supplement' },
+  fileProvider : { combining : 'supplement' },
+  logger : { combining : 'supplement' },
 }
 
 // --
