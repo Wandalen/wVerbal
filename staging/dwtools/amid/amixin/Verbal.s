@@ -245,7 +245,7 @@ var Supplement =
 
 //
 
-_.classMake
+_.classDeclare
 ({
   cls : Self,
   parent : Parent,
