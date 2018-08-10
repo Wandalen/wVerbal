@@ -209,7 +209,7 @@ var Accessors =
 }
 
 // --
-// define class
+// declare
 // --
 
 var Supplement =
