@@ -8,3 +8,4 @@ Verbal is small mixin which adds verbosity control to your class. It tracks verb
 npm install
 node sample/Sample.s
 ```
+
