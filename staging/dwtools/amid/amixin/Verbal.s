@@ -30,7 +30,7 @@ if( typeof module !== 'undefined' )
     require( toolsPath );
   }
 
-  var _ = _global_.wTools;
+  let _ = _global_.wTools;
 
   _.include( 'wProto' );
 
@@ -38,10 +38,10 @@ if( typeof module !== 'undefined' )
 
 //
 
-var _global = _global_;
-var _ = _global_.wTools;
-var Parent = null;
-var Self = function wVerbal( o )
+let _global = _global_;
+let _ = _global_.wTools;
+let Parent = null;
+let Self = function wVerbal( o )
 {
   _.assert( arguments.length === 0 || arguments.length === 1 );
   return _.instanceConstructor( Self, this, arguments );
@@ -53,9 +53,54 @@ Self.shortName = 'Verbal';
 // routines
 // --
 
+function verbal_functor( o )
+{
+  if( _.routineIs( o ) )
+  o = { routine : o }
+  _.routineOptions( verbal_functor, o );
+  _.assert( _.strIsNotEmpty( o.routine.name ) );
+  let routine = o.routine;
+  let title = _.strCapitalize( _.strCamelToTitle( o.routine.name ) );
+
+  return function verbal()
+  {
+    let self = this;
+    let logger = self.logger;
+    let result;
+    logger.rbegin({ verbosity : -1 });
+    logger.log( title + ' ..' );
+    logger.up();
+
+    try
+    {
+      result = routine.apply( this, arguments );
+    }
+    catch( err )
+    {
+      throw _.err( err );
+    }
+
+    _.Consequence.from( result ).split()
+    .doThen( () =>
+    {
+      logger.down();
+      logger.rend({ verbosity : -1 });
+    });
+
+    return result;
+  }
+}
+
+verbal_functor.defaults =
+{
+  routine : null,
+}
+
+//
+
 function _verbositySet( src )
 {
-  var self = this;
+  let self = this;
 
   if( _.boolIs( src ) )
   src = src ? 1 : 0;
@@ -67,11 +112,23 @@ function _verbositySet( src )
 
   self[ verbositySymbol ] = src;
 
+  self._verbosityChange();
+}
+
+//
+
+function _verbosityChange()
+{
+  let self = this;
+
   if( self.fileProvider )
   self.fileProvider.verbosity = self._verbosityForFileProvider();
 
   if( self.logger )
-  self.logger.verbosity = self._verbosityForLogger();
+  {
+    self.logger.verbosity = self._verbosityForLogger();
+    self.logger.outputGray = self.coloring ? 0 : 1;
+  }
 
 }
 
@@ -79,7 +136,7 @@ function _verbositySet( src )
 
 function _coloringSet( src )
 {
-  var self = this;
+  let self = this;
 
   _.assert( arguments.length === 1 );
   _.assert( _.boolLike( src ) );
@@ -103,7 +160,7 @@ function _coloringSet( src )
 
 function _coloringGet()
 {
-  var self = this;
+  let self = this;
   if( self.logger )
   return !self.logger.outputGray;
   return self[ coloringSymbol ];
@@ -113,8 +170,8 @@ function _coloringGet()
 
 function _verbosityForFileProvider()
 {
-  var self = this;
-  var less = _.numberClamp( self.verbosity-2, 0, 9 );
+  let self = this;
+  let less = _.numberClamp( self.verbosity-2, 0, 9 );
   _.assert( arguments.length === 0 );
   return less;
 }
@@ -123,14 +180,16 @@ function _verbosityForFileProvider()
 
 function _fileProviderSet( src )
 {
-  var self = this;
+  let self = this;
 
   _.assert( arguments.length === 1 );
 
-  if( src )
-  src.verbosity = self._verbosityForFileProvider();
+  // if( src )
+  // src.verbosity = self._verbosityForFileProvider();
 
   self[ fileProviderSymbol ] = src;
+
+  self._verbosityChange();
 
 }
 
@@ -138,7 +197,7 @@ function _fileProviderSet( src )
 
 function _verbosityForLogger()
 {
-  var self = this;
+  let self = this;
   _.assert( arguments.length === 0 );
   return self.verbosity;
 }
@@ -147,60 +206,62 @@ function _verbosityForLogger()
 
 function _loggerSet( src )
 {
-  var self = this;
+  let self = this;
 
   _.assert( arguments.length === 1 );
 
+  self[ loggerSymbol ] = src;
+
   if( src )
   {
-    src.verbosity = self._verbosityForLogger();
+    // src.verbosity = self._verbosityForLogger();
     src.outputGray = self.coloring ? 0 :1;
   }
 
-  self[ loggerSymbol ] = src;
-
+  self._verbosityChange();
 }
 
 // --
 // vars
 // --
 
-var verbositySymbol = Symbol.for( 'verbosity' );
-var coloringSymbol = Symbol.for( 'coloring' );
-var fileProviderSymbol = Symbol.for( 'fileProvider' );
-var loggerSymbol = Symbol.for( 'logger' );
+let verbositySymbol = Symbol.for( 'verbosity' );
+let coloringSymbol = Symbol.for( 'coloring' );
+let fileProviderSymbol = Symbol.for( 'fileProvider' );
+let loggerSymbol = Symbol.for( 'logger' );
 
 // --
 // relations
 // --
 
-var Composes =
+let Composes =
 {
   verbosity : 0,
   coloring : 1,
 }
 
-var Aggregates =
+let Aggregates =
 {
 }
 
-var Associates =
+let Associates =
 {
 }
 
-var Restricts =
+let Restricts =
 {
 }
 
-var Statics =
+let Statics =
+{
+  verbal_functor : verbal_functor,
+}
+
+let Forbids =
 {
 }
 
-var Forbids =
-{
-}
-
-var Accessors =
+let Accessors =
 {
   verbosity : { combining : 'supplement' },
   coloring : { combining : 'supplement' },
@@ -212,10 +273,11 @@ var Accessors =
 // declare
 // --
 
-var Supplement =
+let Supplement =
 {
 
   _verbositySet : _verbositySet,
+  _verbosityChange : _verbosityChange,
   _coloringSet : _coloringSet,
   _coloringGet : _coloringGet,
 
@@ -224,10 +286,8 @@ var Supplement =
   _verbosityForLogger : _verbosityForLogger,
   _loggerSet : _loggerSet,
 
-
   //
 
-  
   Composes : Composes,
   Aggregates : Aggregates,
   Associates : Associates,
