@@ -60,7 +60,7 @@ function verbal_functor( o )
   _.routineOptions( verbal_functor, o );
   _.assert( _.strIsNotEmpty( o.routine.name ) );
   let routine = o.routine;
-  let title = _.strCapitalize( _.strCamelToTitle( o.routine.name ) );
+  let title = _.strCapitalize( _.strToTitle( o.routine.name ) );
 
   return function verbal()
   {
