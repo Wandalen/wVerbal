@@ -58,7 +58,7 @@ function verbal_functor( o )
   if( _.routineIs( o ) )
   o = { routine : o }
   _.routineOptions( verbal_functor, o );
-  _.assert( _.strIsNotEmpty( o.routine.name ) );
+  _.assert( _.strDefined( o.routine.name ) );
   let routine = o.routine;
   let title = _.strCapitalize( _.strToTitle( o.routine.name ) );
 
