@@ -80,7 +80,7 @@ function verbal_functor( o )
       throw _.err( err );
     }
 
-    _.Consequence.from( result ).split()
+    _.Consequence.From( result ).split()
     .doThen( () =>
     {
       logger.down();
