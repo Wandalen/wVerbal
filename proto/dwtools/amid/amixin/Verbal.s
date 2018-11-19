@@ -13,24 +13,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  if( typeof _global_ === 'undefined' || !_global_.wBase )
-  {
-    let toolsPath = '../../../dwtools/Base.s';
-    let toolsExternal = 0;
-    try
-    {
-      toolsPath = require.resolve( toolsPath );
-    }
-    catch( err )
-    {
-      toolsExternal = 1;
-      require( 'wTools' );
-    }
-    if( !toolsExternal )
-    require( toolsPath );
-  }
-
-  let _ = _global_.wTools;
+  let _ = require( '../../Tools.s' );
 
   _.include( 'wProto' );
 
@@ -98,6 +81,16 @@ verbal_functor.defaults =
 
 //
 
+function _verbosityGet()
+{
+  let self = this;
+  if( !self.logger )
+  return 0;
+  return self.logger.verbosity;
+}
+
+//
+
 function _verbositySet( src )
 {
   let self = this;
@@ -105,14 +98,20 @@ function _verbositySet( src )
   if( _.boolIs( src ) )
   src = src ? 1 : 0;
 
-  _.assert( arguments.length === 1 );
-  _.assert( _.numberIs( src ) );
-
   src = _.numberClamp( src, 0, 9 );
 
-  self[ verbositySymbol ] = src;
+  _.assert( arguments.length === 1 );
+  _.assert( _.numberIs( src ) );
+  _.assert( src === 0 || !!self.logger, () => 'Verbal ' + self.nickName + ' does not have logger to set verbosity to ' + src );
 
-  self._verbosityChange();
+  // self[ verbositySymbol ] = src;
+
+  let change = self.logger && self.logger.verbosity !== src;
+  if( self.logger )
+  self.logger.verbosity = src;
+
+  if( change )
+  return self._verbosityChange();
 }
 
 //
@@ -121,86 +120,91 @@ function _verbosityChange()
 {
   let self = this;
 
-  if( self.fileProvider )
-  self.fileProvider.verbosity = self._verbosityForFileProvider();
+  _.assert( arguments.length === 0 );
 
-  if( self.logger )
-  {
-    self.logger.verbosity = self._verbosityForLogger();
-    self.logger.outputGray = self.coloring ? 0 : 1;
-  }
+  // if( self.fileProvider )
+  // self.fileProvider.verbosity = self._verbosityForFileProvider();
 
+  // if( self.logger )
+  // {
+  //   // self.logger.verbosity = self._verbosityForLogger();
+  //   self.logger.outputGray = self.coloring ? 0 : 1;
+  //   return src;
+  // }
+
+  return 0;
 }
 
 //
 
-function _coloringSet( src )
-{
-  let self = this;
-
-  _.assert( arguments.length === 1 );
-  _.assert( _.boolLike( src ) );
-
-  if( !src )
-  debugger;
-
-  if( self.logger )
-  {
-    self[ coloringSymbol ] = src;
-    self.logger.outputGray = src ? 0 : 1;
-  }
-  else
-  {
-    self[ coloringSymbol ] = src;
-  }
-
-}
+// function _coloringSet( src )
+// {
+//   let self = this;
+//
+//   _.assert( arguments.length === 1 );
+//   _.assert( _.boolLike( src ) );
+//
+//   if( !src )
+//   debugger;
+//
+//   if( self.logger )
+//   {
+//     self[ coloringSymbol ] = src;
+//     self.logger.outputGray = src ? 0 : 1;
+//   }
+//   else
+//   {
+//     self[ coloringSymbol ] = src;
+//   }
+//
+// }
 
 //
 
 function _coloringGet()
 {
   let self = this;
-  if( self.logger )
+  if( !self.logger )
+  return false;
   return !self.logger.outputGray;
-  return self[ coloringSymbol ];
+  // return self[ coloringSymbol ];
 }
 
 //
 
-function _verbosityForFileProvider()
-{
-  let self = this;
-  let less = _.numberClamp( self.verbosity-2, 0, 9 );
-  _.assert( arguments.length === 0 );
-  return less;
-}
+// function _verbosityForFileProvider()
+// {
+//   let self = this;
+//   let less = _.numberClamp( self.verbosity-2, 0, 9 );
+//   _.assert( arguments.length === 0 );
+//   return less;
+// }
 
 //
 
-function _fileProviderSet( src )
-{
-  let self = this;
-
-  _.assert( arguments.length === 1 );
-
-  // if( src )
-  // src.verbosity = self._verbosityForFileProvider();
-
-  self[ fileProviderSymbol ] = src;
-
-  self._verbosityChange();
-
-}
-
+// function _fileProviderSet( src )
+// {
+//   let self = this;
 //
-
-function _verbosityForLogger()
-{
-  let self = this;
-  _.assert( arguments.length === 0 );
-  return self.verbosity;
-}
+//   _.assert( arguments.length === 1 );
+//
+//   // if( src )
+//   // src.verbosity = self._verbosityForFileProvider();
+//
+//   self[ fileProviderSymbol ] = src;
+//
+//   self._verbosityChange();
+//
+// }
+//
+// //
+//
+// function _verbosityForLogger()
+// {
+//   let self = this;
+//   _.assert( arguments.length === 0 );
+//   return self.verbosity;
+// }
 
 //
 
@@ -210,24 +214,36 @@ function _loggerSet( src )
 
   _.assert( arguments.length === 1 );
 
-  self[ loggerSymbol ] = src;
-
-  if( src )
+  if( self[ loggerSymbol ] )
   {
-    // src.verbosity = self._verbosityForLogger();
-    src.outputGray = self.coloring ? 0 :1;
+    self[ loggerSymbol ].off( 'verbosityChange', self );
   }
 
+  self[ loggerSymbol ] = src;
+
+  // if( src )
+  // debugger;
+  if( src )
+  src.on( 'verbosityChange', self, () => self._verbosityChange() );
+
+  // if( src )
+  // {
+  //   // src.verbosity = self._verbosityForLogger();
+  //   // src.outputGray = self.coloring ? 0 :1;
+  // }
+
   self._verbosityChange();
+
+  return src;
 }
 
 // --
 // vars
 // --
 
-let verbositySymbol = Symbol.for( 'verbosity' );
+// let verbositySymbol = Symbol.for( 'verbosity' );
 let coloringSymbol = Symbol.for( 'coloring' );
-let fileProviderSymbol = Symbol.for( 'fileProvider' );
+// let fileProviderSymbol = Symbol.for( 'fileProvider' );
 let loggerSymbol = Symbol.for( 'logger' );
 
 // --
@@ -236,8 +252,8 @@ let loggerSymbol = Symbol.for( 'logger' );
 
 let Composes =
 {
-  verbosity : 0,
-  coloring : 1,
+  // verbosity : 0,
+  // coloring : 1,
 }
 
 let Aggregates =
@@ -259,13 +275,17 @@ let Statics =
 
 let Forbids =
 {
+  _verbosityForFileProvider : '_verbosityForFileProvider',
+  _fileProviderSet : '_fileProviderSet',
+  _verbosityForLogger : '_verbosityForLogger',
+  _coloringSet : '_coloringSet',
 }
 
 let Accessors =
 {
   verbosity : { combining : 'supplement' },
   coloring : { combining : 'supplement' },
-  fileProvider : { combining : 'supplement' },
+  // fileProvider : { combining : 'supplement' },
   logger : { combining : 'supplement' },
 }
 
@@ -276,14 +296,16 @@ let Accessors =
 let Supplement =
 {
 
+  _verbosityGet : _verbosityGet,
   _verbositySet : _verbositySet,
   _verbosityChange : _verbosityChange,
-  _coloringSet : _coloringSet,
+  // _coloringSet : _coloringSet,
   _coloringGet : _coloringGet,
 
-  _verbosityForFileProvider : _verbosityForFileProvider,
-  _fileProviderSet : _fileProviderSet,
-  _verbosityForLogger : _verbosityForLogger,
+  // _verbosityForFileProvider : _verbosityForFileProvider,
+  // _fileProviderSet : _fileProviderSet,
+  // _verbosityForLogger : _verbosityForLogger,
+
   _loggerSet : _loggerSet,
 
   //
@@ -315,9 +337,9 @@ _.classDeclare
 
 _global_[ Self.name ] = _[ Self.shortName ] = Self;
 
-if( typeof module !== 'undefined' )
-if( _global_.WTOOLS_PRIVATE )
-{ /* delete require.cache[ module.id ]; */ }
+// if( typeof module !== 'undefined' )
+// if( _global_.WTOOLS_PRIVATE )
+// { /* delete require.cache[ module.id ]; */ }
 
 if( typeof module !== 'undefined' && module !== null )
 module[ 'exports' ] = Self;
