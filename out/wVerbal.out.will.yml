@@ -164,8 +164,8 @@ reflector:
       ./dwtools/amid/amixin/Verbal.s: true
       ./dwtools/amid/amixin.test/Verbal.test.s: true
     srcFilter:
-      basePath: ./proto
-      prefixPath: .
+      basePath: .
+      prefixPath: proto
     dstFilter:
       basePath: .
       prefixPath: .
