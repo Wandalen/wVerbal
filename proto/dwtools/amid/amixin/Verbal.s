@@ -65,7 +65,7 @@ function verbal_functor( o )
     }
 
     _.Consequence.From( result ).split()
-    .doThen( () =>
+    .finally( () =>
     {
       logger.down();
       logger.rend({ verbosity : -1 });
