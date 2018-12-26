@@ -69,6 +69,7 @@ function verbal_functor( o )
     {
       logger.down();
       logger.rend({ verbosity : -1 });
+      return true;
     });
 
     return result;
