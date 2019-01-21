@@ -3,7 +3,8 @@
 'use strict';
 
 /**
-  @module Tools/mid/mixin/Verbal - Verbal is small mixin which adds verbosity control to your class. It tracks verbosity changes, reflects any change of verbosity to instance's components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a companion for a logger, mixing it into logger's carrier.
+ * Verbal is small mixin which adds verbosity control to your class. It tracks verbosity changes, reflects any change of verbosity to instance's components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a companion for a logger, mixing it into logger's carrier.
+  @module Tools/mid/mixin/Verbal
 */
 
 /**
