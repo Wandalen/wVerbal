@@ -6,14 +6,17 @@ about:
     verbosity changes, reflects any change of verbosity to instance's
     components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a
     companion for a logger, mixing it into logger's carrier.
-  version: 0.3.56
   enabled: 1
-  interpreters:
-    - nodejs >= 6.0.0
-    - chrome >= 60.0.0
-    - firefox >= 60.0.0
-  keywords:
-    - wTools
+  version: 0.3.56
+  values:
+    enabled: 1
+    name: wVerbal
+    interpreters:
+      - nodejs >= 6.0.0
+      - chrome >= 60.0.0
+      - firefox >= 60.0.0
+    keywords:
+      - wTools
 execution:
   scripts:
     test: wtest proto
