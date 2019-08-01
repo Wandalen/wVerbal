@@ -1,6 +1,10 @@
-( function _Color_test_s_( ) {
+( function _Verbal_test_s_( ) {
 
 'use strict';
+
+/*
+qqq : implement tests for mixin vebal
+*/
 
 if( typeof module !== 'undefined' )
 {
