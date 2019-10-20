@@ -111,7 +111,7 @@ function _verbositySet( src )
 
   _.assert( arguments.length === 1 );
   _.assert( _.numberIs( src ) );
-  _.assert( src === 0 || !!self.logger, () => 'Verbal ' + self.nickName + ' does not have logger to set verbosity to ' + src );
+  _.assert( src === 0 || !!self.logger, () => 'Verbal ' + self.qualifiedName + ' does not have logger to set verbosity to ' + src );
 
   // self[ verbositySymbol ] = src;
 

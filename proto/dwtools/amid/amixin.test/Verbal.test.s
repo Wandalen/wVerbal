@@ -33,7 +33,7 @@ function trivial( test )
 var Self =
 {
 
-  name : 'Tools/mid/mixin/Verbal',
+  name : 'Tools.mid.mixin.Verbal',
   silencing : 1,
   // verbosity : 1,
 
