@@ -23,7 +23,7 @@ about :
 path :
 
   repository : git+https:///github.com/Wandalen/wVerbal.git
-  remotes :
+  origins :
    - git+https:///github.com/Wandalen/wVerbal.git
    - npm:///wverbal
   bugtracker : https:///github.com/Wandalen/wVerbal/issues
