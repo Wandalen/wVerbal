@@ -12,7 +12,7 @@
   {
     "url" : "https://github.com/Wandalen/wVerbal/issues"
   }, 
-  "dependencies" : { "wTools" : "", "wProto" : "" }, 
-  "devDependencies" : { "wTesting" : "" }, 
+  "dependencies" : { "wTools" : "alpha", "wProto" : "alpha" }, 
+  "devDependencies" : { "wTesting" : "alpha" }, 
   "keywords" : [ "wTools" ]
 }
