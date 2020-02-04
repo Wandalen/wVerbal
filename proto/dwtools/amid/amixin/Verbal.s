@@ -129,7 +129,7 @@ function _verbosityChange()
 {
   let self = this;
 
-  _.assert( arguments.length === 0 );
+  _.assert( arguments.length === 0, 'Expects no arguments' );
 
   // if( self.fileProvider )
   // self.fileProvider.verbosity = self._verbosityForFileProvider();
@@ -185,7 +185,7 @@ function _coloringGet()
 // {
 //   let self = this;
 //   let less = _.numberClamp( self.verbosity-2, 0, 9 );
-//   _.assert( arguments.length === 0 );
+//   _.assert( arguments.length === 0, 'Expects no arguments' );
 //   return less;
 // }
 
@@ -211,7 +211,7 @@ function _coloringGet()
 // function _verbosityForLogger()
 // {
 //   let self = this;
-//   _.assert( arguments.length === 0 );
+//   _.assert( arguments.length === 0, 'Expects no arguments' );
 //   return self.verbosity;
 // }
 
