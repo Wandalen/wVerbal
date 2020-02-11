@@ -6,7 +6,7 @@ Verbal is small mixin which adds verbosity control to your class. It tracks verb
 ### Try out
 ```
 npm install
-node sample/Sample.s
+node sample/Sample.js
 ```
 
 
