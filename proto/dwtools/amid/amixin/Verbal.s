@@ -14,7 +14,8 @@
 /**
  * @classdesc Verbal is small mixin which adds verbosity control to your class.
  * @class wVerbal
- * @memberof module:Tools/mid/Verbal
+ * @namespace wTools
+ * @module Tools/mid/Verbal
 */
 
 if( typeof module !== 'undefined' )
