@@ -1,18 +1,18 @@
 {
-  "name" : "wverbal", 
-  "version" : "0.3.131", 
-  "description" : "Verbal is small mixin which adds verbosity control to your class. It tracks verbosity changes, reflects any change of verbosity to instance's components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a companion for a logger, mixing it into logger's carrier.", 
-  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>", 
-  "license" : "MIT", 
-  "main" : "proto/dwtools/amid/amixin/Verbal.s", 
-  "files" : [ "proto/dwtools/amid/amixin", "proto/dwtools/Tools.s", "out" ], 
-  "scripts" : { "test" : "wtest .run proto/**", "docgen" : "wdocgen proto" }, 
-  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wVerbal.git" }, 
-  "bugs" : 
+  "name" : "wverbal",
+  "version" : "0.3.132",
+  "description" : "Verbal is small mixin which adds verbosity control to your class. It tracks verbosity changes, reflects any change of verbosity to instance's components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a companion for a logger, mixing it into logger's carrier.",
+  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>",
+  "license" : "MIT",
+  "main" : "proto/dwtools/amid/amixin/Verbal.s",
+  "files" : [ "proto/dwtools/amid/amixin", "proto/dwtools/Tools.s", "out" ],
+  "scripts" : { "test" : "wtest .run proto/**", "docgen" : "wdocgen proto" },
+  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wVerbal.git" },
+  "bugs" :
   {
     "url" : "https://github.com/Wandalen/wVerbal/issues"
-  }, 
-  "dependencies" : { "wTools" : "", "wProto" : "" }, 
-  "devDependencies" : { "wTesting" : "" }, 
+  },
+  "dependencies" : { "wTools" : "", "wProto" : "" },
+  "devDependencies" : { "wTesting" : "" },
   "keywords" : [ "wTools" ]
 }
