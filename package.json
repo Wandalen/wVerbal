@@ -6,7 +6,7 @@
   "license" : "MIT",
   "main" : "proto/dwtools/amid/amixin/Verbal.s",
   "files" : [ "proto/dwtools/amid/amixin", "proto/dwtools/Tools.s", "out" ],
-  "scripts" : { "test" : "wtest .run proto/**", "docgen" : "wdocgen proto" },
+  "scripts" : { "test" : "wtest .run 'proto/**'", "docgen" : "wdocgen proto" },
   "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wVerbal.git" },
   "bugs" :
   {
