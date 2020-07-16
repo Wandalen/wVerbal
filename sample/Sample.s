@@ -1,7 +1,7 @@
 
 if( typeof module !== 'undefined' )
 require( 'wverbal' );
-var _ = wTools;
+let _ = wTools;
 
 /**/
 
