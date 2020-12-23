@@ -2,15 +2,12 @@ format: outwillfile-2.0
 root:
   - wVerbal.out
 consistency:
-  wVerbal.out.will.yml: &ref_0
-    hash: cc97cb42948eb8c5b3f2e0a60e4d9339
-    size: 38384
-  ../.ex.will.yml: &ref_1
+  ../.ex.will.yml: &ref_0
     hash: 2f5c64af795f72db93bdc3cdcaaa2bdf
     size: 1908
-  ../.im.will.yml: &ref_2
-    hash: c9611acc5018f9129187ed2e84097792
-    size: 4997
+  ../.im.will.yml: &ref_1
+    hash: a6692238730e2dab8e3be5a870e714e2
+    size: 5105
 module:
   wVerbal.out:
     about:
@@ -23,18 +20,18 @@ module:
         companion for a logger, mixing it into logger's carrier.
       enabled: 1
       version: 0.4.0
-      interpreters:
+      interpreters: &ref_2
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords:
+      keywords: &ref_3
         - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
+      contributors: &ref_4
         - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wverbal
-      npm.scripts:
+      npm.scripts: &ref_5
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -185,6 +182,12 @@ module:
           development: 1
       wTesting:
         path: 'npm:///wTesting'
+        autoExporting: 0
+        enabled: 0
+        criterion:
+          development: 1
+      eslint:
+        path: 'npm:///eslint#7.1.0'
         autoExporting: 0
         enabled: 0
         criterion:
@@ -696,24 +699,6 @@ module:
           content: prime
         inherit:
           - files.transpile
-      exported.proto.export:
-        opts:
-          filePath: 'reflector::exported.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
-      exported.files.proto.export:
-        opts:
-          filePath: 'reflector::exported.files.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
     build:
       proto.export:
         steps:
@@ -802,9 +787,8 @@ module:
           content: proto
           export: 1
     consistency:
-      wVerbal.out.will.yml: *ref_0
-      ../.ex.will.yml: *ref_1
-      ../.im.will.yml: *ref_2
+      ../.ex.will.yml: *ref_0
+      ../.im.will.yml: *ref_1
   ../:
     about:
       name: wVerbal
@@ -816,20 +800,13 @@ module:
         companion for a logger, mixing it into logger's carrier.
       enabled: 1
       version: 0.4.0
-      interpreters:
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      keywords:
-        - wTools
+      interpreters: *ref_2
+      keywords: *ref_3
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
-        - Kostiantyn Wandalen <wanalen@01.school>
+      contributors: *ref_4
       npm.name: wverbal
-      npm.scripts:
-        test: wtest .run proto/**
-        docgen: wdocgen .build proto
+      npm.scripts: *ref_5
     path:
       module.willfiles:
         criterion:
@@ -955,6 +932,12 @@ module:
           development: 1
       wTesting:
         path: 'npm:///wTesting'
+        autoExporting: 0
+        enabled: 0
+        criterion:
+          development: 1
+      eslint:
+        path: 'npm:///eslint#7.1.0'
         autoExporting: 0
         enabled: 0
         criterion:
@@ -1494,6 +1477,5 @@ module:
         hash: 2f5c64af795f72db93bdc3cdcaaa2bdf
         size: 1908
       ../.im.will.yml:
-        hash: c9611acc5018f9129187ed2e84097792
-        size: 4997
-      wVerbal.out.will.yml: *ref_0
+        hash: a6692238730e2dab8e3be5a870e714e2
+        size: 5105
