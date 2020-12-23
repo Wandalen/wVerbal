@@ -1,4 +1,5 @@
-( function _Verbal_test_s_( ) {
+( function _Verbal_test_s_( )
+{
 
 'use strict';
 
@@ -24,7 +25,7 @@ let _ = _global_.wTools;
 function trivial( test )
 {
 
-  test.identical( 1,1 );
+  test.identical( 1, 1 );
 
 }
 
@@ -39,7 +40,7 @@ let Self =
 
   tests :
   {
-    trivial : trivial,
+    trivial,
   },
 
 }
