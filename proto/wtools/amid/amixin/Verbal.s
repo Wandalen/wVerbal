@@ -1,4 +1,5 @@
-( function _Verbal_s_() {
+( function _Verbal_s_()
+{
 
 'use strict';
 
@@ -280,7 +281,7 @@ let Restricts =
 
 let Statics =
 {
-  verbal_functor : verbal_functor,
+  verbal_functor,
 }
 
 let Forbids =
@@ -306,27 +307,27 @@ let Accessors =
 let Supplement =
 {
 
-  _verbosityGet : _verbosityGet,
-  _verbositySet : _verbositySet,
-  _verbosityChange : _verbosityChange,
+  _verbosityGet,
+  _verbositySet,
+  _verbosityChange,
   // _coloringSet : _coloringSet,
-  _coloringGet : _coloringGet,
+  _coloringGet,
 
   // _verbosityForFileProvider : _verbosityForFileProvider,
   // _fileProviderSet : _fileProviderSet,
   // _verbosityForLogger : _verbosityForLogger,
 
-  _loggerSet : _loggerSet,
+  _loggerSet,
 
   //
 
-  Composes : Composes,
-  Aggregates : Aggregates,
-  Associates : Associates,
-  Restricts : Restricts,
-  Statics : Statics,
-  Forbids : Forbids,
-  Accessors : Accessors,
+  Composes,
+  Aggregates,
+  Associates,
+  Restricts,
+  Statics,
+  Forbids,
+  Accessors,
 
 }
 
@@ -346,7 +347,6 @@ _.classDeclare
 // --
 
 _global_[ Self.name ] = _[ Self.shortName ] = Self;
-
 
 
 if( typeof module !== 'undefined' )
