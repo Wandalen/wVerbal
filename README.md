@@ -8,7 +8,7 @@ Verbal is small mixin which adds verbosity control to your class. It tracks verb
 git clone https://github.com/Wandalen/wVerbal
 cd wVerbal
 npm install
-node sample/Sample.s
+node sample/trivial/Sample.s
 ```
 
 ## To add to your project
