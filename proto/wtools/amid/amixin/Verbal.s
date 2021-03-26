@@ -30,10 +30,10 @@ if( typeof module !== 'undefined' )
 
 //
 
-let _global = _global_;
-let _ = _global_.wTools;
-let Parent = null;
-let Self = wVerbal;
+const _global = _global_;
+const _ = _global_.wTools;
+const Parent = null;
+const Self = wVerbal;
 function wVerbal( o )
 {
   _.assert( arguments.length === 0 || arguments.length === 1 );
