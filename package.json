@@ -1,36 +1,18 @@
 {
-  "name": "wverbal",
-  "version": "0.3.204",
-  "description": "Verbal is small mixin which adds verbosity control to your class. It tracks verbosity changes, reflects any change of verbosity to instance's components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a companion for a logger, mixing it into logger's carrier.",
-  "author": "Kostiantyn Wandalen <wanalen@01.school>",
-  "license": "MIT",
-  "main": "proto/wtools/amid/amixin/Verbal.s",
-  "files": [
-    "proto/wtools/amid/amixin",
-    "proto/wtools/Tools.s",
-    "out",
-    "proto/node_modules"
-  ],
-  "scripts": {
-    "test": "wtest .run 'proto/**' rapidity:-3",
-    "docgen": "wdocgen proto"
+  "name" : "wverbal",
+  "version" : "0.3.205",
+  "description" : "Verbal is small mixin which adds verbosity control to your class. It tracks verbosity changes, reflects any change of verbosity to instance's components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a companion for a logger, mixing it into logger's carrier.",
+  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
+  "license" : "MIT",
+  "main" : "proto/node_modules/wverbal",
+  "files" : [ "proto/wtools/amid/amixin", "proto/wtools/Tools.s", "out", "proto/node_modules" ],
+  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
+  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wVerbal.git" },
+  "bugs" :
+  {
+    "url" : "https://github.com/Wandalen/wVerbal/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Wandalen/wVerbal.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Wandalen/wVerbal/issues"
-  },
-  "dependencies": {
-    "wTools": "delta",
-    "wProto": "delta"
-  },
-  "devDependencies": {
-    "eslint": "7.1.0",
-    "wTesting": "delta"
-  },
-  "keywords": [
-    "wTools"
-  ]
+  "dependencies" : { "wTools" : "delta", "wProto" : "delta" },
+  "devDependencies" : { "eslint" : "7.1.0", "wTesting" : "delta" },
+  "keywords" : [ "wTools" ]
 }
