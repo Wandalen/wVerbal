@@ -2,10 +2,13 @@ format: outwillfile-2.0
 root:
   - wVerbal.out
 consistency:
-  ../.ex.will.yml: &ref_0
+  wVerbal.out.will.yml: &ref_0
+    hash: 3a2f927ec3c80744c577525dd65cd901
+    size: 39020
+  ../.ex.will.yml: &ref_1
     hash: 2f5c64af795f72db93bdc3cdcaaa2bdf
     size: 1908
-  ../.im.will.yml: &ref_1
+  ../.im.will.yml: &ref_2
     hash: 366b9a58cb78e7d8e40654ca090d1bf5
     size: 5060
 module:
@@ -20,18 +23,18 @@ module:
         companion for a logger, mixing it into logger's carrier.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
+      interpreters:
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
+      keywords:
         - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: &ref_4
+      contributors:
         - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wverbal
-      npm.scripts: &ref_5
+      npm.scripts:
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -706,6 +709,24 @@ module:
           content: prime
         inherit:
           - files.transpile
+      exported.proto.export:
+        opts:
+          filePath: 'reflector::exported.proto.export'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
+      exported.files.proto.export:
+        opts:
+          filePath: 'reflector::exported.files.proto.export'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
     build:
       proto.export:
         steps:
@@ -794,8 +815,9 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      wVerbal.out.will.yml: *ref_0
+      ../.ex.will.yml: *ref_1
+      ../.im.will.yml: *ref_2
   ../:
     about:
       name: wVerbal
@@ -807,13 +829,20 @@ module:
         companion for a logger, mixing it into logger's carrier.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
+      interpreters:
+        - njs >= 10.0.0
+        - chrome >= 60.0.0
+        - firefox >= 60.0.0
+      keywords:
+        - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: *ref_4
+      contributors:
+        - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wverbal
-      npm.scripts: *ref_5
+      npm.scripts:
+        test: wtest .run proto/**
+        docgen: wdocgen .build proto
     path:
       module.willfiles:
         criterion:
@@ -1491,3 +1520,6 @@ module:
       ../.im.will.yml:
         hash: 366b9a58cb78e7d8e40654ca090d1bf5
         size: 5060
+      wVerbal.out.will.yml:
+        hash: 3a2f927ec3c80744c577525dd65cd901
+        size: 39020
