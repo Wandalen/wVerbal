@@ -80,8 +80,8 @@ path:
       raw: compiled
       content: prime
   npm.proto.entry:
-    - /pro/module/wVerbal/proto/wtools/amid/amixin/Verbal.s
-    - /pro/module/wVerbal/proto/node_modules/wverbal
+    - proto/wtools/amid/amixin/Verbal.s
+    - proto/node_modules/wverbal
 reflector:
   reflect.proto:
     inherit: predefined.*
