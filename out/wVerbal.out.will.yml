@@ -1520,6 +1520,4 @@ module:
       ../.im.will.yml:
         hash: 3334ba3601996e5829d737ca214dac6f
         size: 5020
-      wVerbal.out.will.yml:
-        hash: b03f55a8a2bcef61286a9c2455081436
-        size: 39020
+      wVerbal.out.will.yml: *ref_0
