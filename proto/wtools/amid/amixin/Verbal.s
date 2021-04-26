@@ -43,14 +43,14 @@ function wVerbal( o )
 Self.shortName = 'Verbal';
 
 // --
-// routines
+// implementation
 // --
 
 function verbal_functor( o )
 {
   if( _.routineIs( o ) )
   o = { routine : o }
-  _.routineOptions( verbal_functor, o );
+  _.routine.options_( verbal_functor, o );
   _.assert( _.strDefined( o.routine.name ) );
   let routine = o.routine;
   let title = _.strCapitalize( _.strToTitle( o.routine.name ) );
