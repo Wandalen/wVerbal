@@ -3,8 +3,8 @@ root:
   - wVerbal.out
 consistency:
   ../will.yml: &ref_0
-    hash: 738b48b14f86c81287dffe05e0a21f50
-    size: 6559
+    hash: c4e385e6847cdf73e4956bb13c3ad51d
+    size: 6567
 module:
   wVerbal.out:
     about:
@@ -1456,5 +1456,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 738b48b14f86c81287dffe05e0a21f50
-        size: 6559
+        hash: c4e385e6847cdf73e4956bb13c3ad51d
+        size: 6567
