@@ -1,6 +1,6 @@
 {
   "name": "wverbal",
-  "version": "0.3.255",
+  "version": "0.3.256",
   "description": "Verbal is small mixin which adds verbosity control to your class. It tracks verbosity changes, reflects any change of verbosity to instance's components, and also clamp verbosity in [ 0 .. 9 ] range. Use it as a companion for a logger, mixing it into logger's carrier.",
   "author": "Kostiantyn Wandalen <wandalen@obox.systems>",
   "license": "MIT",
